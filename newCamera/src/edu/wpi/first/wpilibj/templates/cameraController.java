@@ -19,15 +19,15 @@ public class cameraController {
   AxisCamera cam = null;
  CriteriaCollection cc = new CriteriaCollection();      // create the criteria for the particle filter
   
-      public cameraController(AxisCamera camera) {
-           cam = camera;
+      public cameraController() {
+        cam = AxisCamera.getInstance();
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, 10, 800, false); //looks for cetian size rectangles
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, 10, 800, false);
        }
        
-       public cameraController(AxisCamera camera,
-               int minWidth, int maxWidth, int minHeight, int maxHeight) {
-        cam = camera;
+       public cameraController(int minWidth, int maxWidth,
+       int minHeight, int maxHeight) {
+        cam = AxisCamera.getInstance();
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, minWidth, maxWidth, false); //looks for cetian size rectangles
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, minHeight, maxHeight, false);
        }
@@ -74,6 +74,11 @@ public class cameraController {
                             temp = i;
                         }    
                }
-            return reports[temp];
+            if(reports.length > 0) {
+                return reports[temp];
+            }
+            else {
+                return null;
+            }
        }
 }
