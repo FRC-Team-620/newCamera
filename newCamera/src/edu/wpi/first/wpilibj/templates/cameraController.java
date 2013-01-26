@@ -21,6 +21,7 @@ public class cameraController {
   
       public cameraController() {
         cam = AxisCamera.getInstance();
+        
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, 10, 800, false); //looks for cetian size rectangles
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, 10, 800, false);
        }

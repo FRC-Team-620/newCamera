@@ -43,7 +43,7 @@ public class CameraTest extends SimpleRobot {
 
     public void autonomous() {
         while (isAutonomous() && isEnabled()) {
-            ParticleAnalysisReport r = cam.getLargestParticle(0,45,100,255,0,45);
+            ParticleAnalysisReport r = cam.getLargestParticle(200,255,200,255,200,255);
             if(r != null) {
            System.out.println("Particle at: "  +
                    r.center_mass_x
