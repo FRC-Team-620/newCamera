@@ -37,20 +37,28 @@ import edu.wpi.first.wpilibj.image.RGBImage;
  */
 public class CameraTest extends SimpleRobot {
      cameraController cam = null;
+     PIDcntrl pid = null;
     public void robotInit() {
     cam = new cameraController();
+    pid = new PIDcntrl(2,3);
     }
 
     public void autonomous() {
         while (isAutonomous() && isEnabled()) {
-            ParticleAnalysisReport r = cam.getLargestParticle(200,255,200,255,200,255);
+            ParticleAnalysisReport r = cam.getLargestParticle(0,50,200,255,0,50);
             if(r != null) {
-           System.out.println("Particle at: "  +
+           
+                System.out.println("Particle at: "  +
                    r.center_mass_x
                    + "," + 
                    r.center_mass_y +
                    " Particle Area: " +
                    r.particleArea);
+                   
+                pid.loop(320, r);
+
+           
+           
          }
         }
     }
